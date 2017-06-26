@@ -3,7 +3,7 @@
         'Form--show': isVisible,
     }"
 >
-    <form v-on:submit.prevent="send">
+    <form @submit.prevent="send">
         <text-input
             v-model="comment"
             label="Comment"
@@ -13,26 +13,19 @@
             <vote-button
                 type="dislike"
                 label="Dislike"
+                :is-active="isLiked === false"
+                :vote.prevent="vote(false)"
             />
             <vote-button
                 type="like"
                 label="Like"
+                :is-active="isLiked === true"
+                :vote="vote(true)"
             />
-            <!--<button class="VoteButton VoteButton--dislike"
-                :class="{
-                    'VoteButton--active': isLiked === false,
-                }"
-            >
-                Dislike
-            </button>
-            <button class="VoteButton VoteButton--like"
-                :class="{
-                    'VoteButton--active': isLiked === true,
-                }"
-            >
-                Like
-            </button>-->
         </div>
-        <button class="SubmitButton" type="submit">Send</button>
+        <submit-button
+            label="Send feedback"
+        />
     </form>
+
 </div>

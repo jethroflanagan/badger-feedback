@@ -36,6 +36,7 @@
             background-color: $color-button-background-like;
         }
     }
+
     &--dislike {
         background-image: url('#{$icon-path}core/thumbs-down.svg');
         background-position-y: 60%;
@@ -48,4 +49,12 @@
             background-color: $color-button-background-dislike;
         }
     }
+
+        &--like.VoteButton--active {
+            background-color: $color-button-background-like;
+        }
+
+        &--dislike.VoteButton--active {
+            background-color: $color-button-background-dislike;
+        }
 }

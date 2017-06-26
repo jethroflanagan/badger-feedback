@@ -12,14 +12,14 @@ new Vue({
         'rating-form': RatingForm,
     },
 
-    data() {
+    data () {
         return {
             isOpen: true,
         };
     },
 
     methods: {
-        toggleForm: function () {
+        toggleForm () {
             this.isOpen = !this.isOpen;
         },
     },

@@ -15,7 +15,7 @@ const TextInput = Vue.extend({
         },
     },
 
-    data() {
+    data () {
         return {
             value: '',
         };

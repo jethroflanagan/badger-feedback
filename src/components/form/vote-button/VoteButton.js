@@ -21,13 +21,17 @@ const VoteButton = Vue.extend({
             type: Boolean,
             default: false,
         },
+        vote: {
+            type: Function,
+            required: true,
+        }
     },
 
     methods: {
-        onClick: function () {
-            this.activate();
-        },
-    },
+        onClick () {
+            this.vote();
+        }
+    }
 });
 
 export default VoteButton;

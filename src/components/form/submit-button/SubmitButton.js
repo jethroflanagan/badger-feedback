@@ -11,11 +11,12 @@ const SubmitButton = Vue.extend({
         },
     },
 
-    methods: {
-        onClick: function () {
-            console.log('submit');
-        },
-    }
+    // methods: {
+    //     onClick: function () {
+    //         console.log('submit', this.click);
+    //         this.click();
+    //     },
+    // }
 });
 
 export default SubmitButton;
