@@ -1,7 +1,7 @@
 import Vue from 'vue';
 
 const AppComponent = Vue.extend({
-  template: '<div>test</div>',
+    template: '<div>Badge</div>',
 });
 
 export default AppComponent;

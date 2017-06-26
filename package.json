@@ -1,19 +1,24 @@
 {
-  "name": "feedback-ratings",
-  "version": "1.0.0",
-  "main": "src/index.js",
-  "author": "Jethro Flanagan",
-  "license": "MIT",
-  "scripts": {
-    "start": "webpack-dev-server"
-  },
-  "dependencies": {
-    "babel-core": "^6.25.0",
-    "babel-loader": "^7.1.0",
-    "babel-preset-es2015": "^6.24.1",
-    "live-server": "^1.2.0",
-    "vue": "^2.3.4",
-    "webpack": "^3.0.0",
-    "webpack-dev-server": "^2.5.0"
-  }
+    "name": "feedback-ratings",
+    "version": "1.0.0",
+    "main": "src/index.js",
+    "author": "Jethro Flanagan",
+    "license": "MIT",
+    "scripts": {
+        "start": "NODE_ENV=development webpack-dev-server"
+    },
+    "devDependencies": {
+        "babel-core": "^6.25.0",
+        "babel-loader": "^7.1.0",
+        "babel-preset-es2015": "^6.24.1",
+        "css-loader": "^0.28.4",
+        "extract-text-webpack-plugin": "^2.1.2",
+        "html-loader": "^0.4.5",
+        "node-sass": "^4.5.3",
+        "sass-loader": "^6.0.6",
+        "style-loader": "^0.18.2",
+        "vue": "^2.3.4",
+        "webpack": "^3.0.0",
+        "webpack-dev-server": "^2.5.0"
+    }
 }
