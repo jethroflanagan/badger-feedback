@@ -1,0 +1,51 @@
+@import "../../../styles/global";
+
+.VoteButton {
+    $transition: .1s ease-out;
+
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-color: $color-button-background;
+    border: 2px solid transparent;
+    outline: none;
+    cursor: pointer;
+
+    transition:
+        background-color $transition,
+        background-size $transition;
+
+    &:hover {
+        background-size: 60%;
+    }
+
+    &--like {
+        background-image: url('#{$icon-path}core/thumbs-up.svg');
+        background-position-y: 40%;
+
+        &:focus {
+            border-color: $color-button-background-like;
+        }
+
+        &:hover {
+            background-color: $color-button-background-like;
+        }
+    }
+    &--dislike {
+        background-image: url('#{$icon-path}core/thumbs-down.svg');
+        background-position-y: 60%;
+
+        &:focus {
+            border-color: $color-button-background-dislike;
+        }
+
+        &:hover {
+            background-color: $color-button-background-dislike;
+        }
+    }
+}

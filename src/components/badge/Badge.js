@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import RatingForm from '../form/RatingForm';
 
-import template from './Badge.template.html';
+import template from './Badge.html';
 import styles from './Badge.scss';
 
 const Badge = Vue.extend({
@@ -11,13 +11,22 @@ const Badge = Vue.extend({
         'rating-form': RatingForm
     },
 
-    data() {
-        return {};
+    props: {
+        toggle: {
+            type: Function,
+            required: true,
+        },
     },
 
+    // data() {
+    //     return {
+    //         isOpen: false,
+    //     };
+    // },
+
     methods: {
-        open: () => {
-            console.log('clicked');
+        onClick: function () {
+            this.toggle();
         },
     },
 });

@@ -1,0 +1,10 @@
+@import "styles/global";
+
+.App {
+    position: relative;
+    font-family: $font-stack;
+
+    * {
+        box-sizing: border-box;
+    }
+}

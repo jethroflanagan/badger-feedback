@@ -1,0 +1,38 @@
+<div class="Form"
+    :class="{
+        'Form--show': isVisible,
+    }"
+>
+    <form v-on:submit.prevent="send">
+        <text-input
+            v-model="comment"
+            label="Comment"
+            placeholder="What you think?"
+        />
+        <div class="VoteButton-container">
+            <vote-button
+                type="dislike"
+                label="Dislike"
+            />
+            <vote-button
+                type="like"
+                label="Like"
+            />
+            <!--<button class="VoteButton VoteButton--dislike"
+                :class="{
+                    'VoteButton--active': isLiked === false,
+                }"
+            >
+                Dislike
+            </button>
+            <button class="VoteButton VoteButton--like"
+                :class="{
+                    'VoteButton--active': isLiked === true,
+                }"
+            >
+                Like
+            </button>-->
+        </div>
+        <button class="SubmitButton" type="submit">Send</button>
+    </form>
+</div>

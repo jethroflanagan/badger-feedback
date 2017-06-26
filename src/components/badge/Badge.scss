@@ -1,6 +1,20 @@
 @import "../../styles/global";
 
 .Badge {
-    position: relative;
-    font-family: $font-stack;
+    $transition: .3s ease-out;
+
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    background-color: red;
+    cursor: pointer;
+    transition:
+        width $transition,
+        height $transition;
+
+    &--hidden {
+        width: 10px;
+        height: 10px;
+    }
 }
