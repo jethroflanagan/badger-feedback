@@ -1,10 +1,15 @@
 @import "../../../styles/global";
 
 .TextInput {
+    position: relative;
+
     &-label {
         padding-bottom: 10px;
         display: block;
+        font-size: 1.5rem;
+        font-weight: 300;
     }
+
     &-field {
         display: block;
         font-size: $font-size;
@@ -15,11 +20,19 @@
         padding: 10px;
         outline: none;
         border: 1px solid transparent;
-        max-width: 80vw;
-        max-height: 80vh;
+        min-width: 200px;
+        min-height: 100px;
 
         &:focus {
             border-color: #ccc;
         }
+    }
+
+    &-remaining {
+        position: absolute;
+        opacity: 0.5;
+        bottom: -1.2rem;
+        left: 0;
+        font-size: .8rem;
     }
 }

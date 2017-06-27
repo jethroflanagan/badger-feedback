@@ -4,5 +4,12 @@
         v-model="value"
         :placeholder="placeholder"
         id="field"
+        ref="field"
+        :maxlength="maxLength ? maxLength : false"
     />
+    <div v-if="maxLength > 0"
+        class="TextInput-remaining"
+    >
+        {{charactersRemaining}}
+    </div>
 </div>

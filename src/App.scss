@@ -1,10 +1,8 @@
 @import "styles/global";
 
-html, body {
-    background: #eee;
-}
 .App {
     position: relative;
+    display: inline-block;
     font-family: $font-stack;
 
     * {

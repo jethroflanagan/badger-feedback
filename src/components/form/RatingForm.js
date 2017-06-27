@@ -23,11 +23,9 @@ const RatingForm = Vue.extend({
         };
     },
 
-    created () {
+    mounted () {
         // add class after initial render to trigger the transition
-        setTimeout(() => {
-            this.isVisible = true;
-        }, 0);
+        this.isVisible = true;
     },
 
     methods: {

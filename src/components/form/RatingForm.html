@@ -9,6 +9,8 @@
                 v-model="comment"
                 label="Feedback"
                 placeholder="What you think?"
+                :is-focused="true"
+                :max-length="256"
             />
         </div>
         <div class="Form-votes">
@@ -24,11 +26,6 @@
                 :is-active="isLiked === true"
                 :on-click="vote(true)"
             />
-            <div class="Form-feedback"
-                v-if="isOverVote"
-            >
-                Send feedback
-            </div>
         </div>
     </form>
 </div>

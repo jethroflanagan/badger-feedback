@@ -6,9 +6,9 @@ const extractSass = new ExtractTextPlugin({
 
 module.exports = {
     entry: [
-        'whatwg-fetch',
-        './src/App'
+        './src/index'
     ],
+    devtool: 'source-map',
     output: {
         filename: 'bundle.js',
     },
@@ -17,7 +17,7 @@ module.exports = {
             test: /\.js$/,
             exclude: /node_modules/,
             loader: 'babel-loader',
-            query: {
+            options: {
                 presets: ['es2015'],
             },
         },

@@ -2,11 +2,68 @@
 <html>
 <head>
     <title>Ratings demo</title>
+    <style>
+        /* just for the demo space */
+        html, body {
+            background: #fff;
+            font-family: sans-serif;
+        }
+        .banner {
+            position: relative;
+            box-sizing: border-box;
+            width: 100%;
+            height: 200px;
+            padding: 20px;
+            background: #aaa;
+        }
+        .footer {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 20px;
+            background: #ccc;
+        }
+        .code {
+            background: #555;
+            color: #fff;
+            display: inline-block;
+            padding: 10px;
+            margin: 0;
+            border-radius: 3px;
+            white-space: pre-line;
+            font-family: Monaco, monospace;
+            font-size: .8rem;
+        }
+    </style>
 </head>
 <body>
-    <div id="app">
-        <app-component></app-component>
-    </div>
+    <header>
+        <h1>
+            Feedback badge demo
+            <div class="js-feedback"></div>
+        </h1>
+
+    </header>
+    <article>
+        <p>The badges can be added as elements you need then run the plugin with the class or id.
+        <code class="code">&lt;div class=&quot;my-feedback-badge&quot;&gt;&lt;/div&gt;
+            window.badgerFeedback.addAll('.my-feedback-badge');
+        </code>
+        </p>
+        <div class="banner">Placeholder for banner
+            <div class="js-feedback"
+                data-position="absolute"
+                data-style="right: 10px; bottom: 10px;"
+                data-comment-placeholder="Tell us!"
+            ></div>
+        </div>
+        <p>Pro ne assum munere sensibus. Enim verear docendi usu ex, no dictas oporteat honestatis has, in deleniti perfecto dissentias ius.</p>
+        <div  class="js-feedback"></div>
+    </article>
+    <footer class="footer">
+        Legal notices and company contact info
+    </footer>
     <script src="bundle.js"></script>
 </body>
 </html>
