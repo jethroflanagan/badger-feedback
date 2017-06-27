@@ -1,5 +1,8 @@
 @import "styles/global";
 
+html, body {
+    background: #eee;
+}
 .App {
     position: relative;
     font-family: $font-stack;

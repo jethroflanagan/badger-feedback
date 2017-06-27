@@ -1,8 +1,17 @@
 $image-path: "/assets/";
 $icon-path: "#{$image-path}icons/"; // using icons from https://feather.netlify.com/
 $font-stack: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+$font-size: 1rem;
 
 $color-button-background: #aaa;
 $color-button-focus: #555;
 $color-button-background-like: #00c4ff;
-$color-button-background-dislike: #ff8d00;
+$color-button-background-dislike: #e64747;
+
+$color-form-background: #fff;
+$color-dark-form-background: #342d37;
+
+$button-border-radius: 0;
+$button-size: 32px;
+
+$form-border-radius: 0;

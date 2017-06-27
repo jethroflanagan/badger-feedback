@@ -4,6 +4,7 @@ import SubmitButton from './submit-button/SubmitButton';
 import VoteButton from './vote-button/VoteButton';
 
 import template from './RatingForm.html';
+import styles from './RatingForm.scss';
 
 const RatingForm = Vue.extend({
     template,
@@ -17,9 +18,16 @@ const RatingForm = Vue.extend({
     data () {
         return {
             comment: '',
-            isVisible: true,
+            isVisible: false,
             isLiked: null,
         };
+    },
+
+    created () {
+        // add class after initial render to trigger the transition
+        setTimeout(() => {
+            this.isVisible = true;
+        }, 0);
     },
 
     methods: {
@@ -31,6 +39,7 @@ const RatingForm = Vue.extend({
         },
         send () {
             console.log('sending to api');
+
         },
     },
 });

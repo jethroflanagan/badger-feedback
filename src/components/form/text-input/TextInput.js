@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import template from './TextInput.html';
+import styles from './TextInput.scss';
 
 const TextInput = Vue.extend({
     template,

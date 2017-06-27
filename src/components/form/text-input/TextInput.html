@@ -1,6 +1,7 @@
 <div class="TextInput">
-    <label for="field">{{label}}</label>
-    <input v-model="value"
+    <label class="TextInput-label" for="field">{{label}}</label>
+    <textarea class="TextInput-field"
+        v-model="value"
         :placeholder="placeholder"
         id="field"
     />

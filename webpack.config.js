@@ -5,7 +5,10 @@ const extractSass = new ExtractTextPlugin({
 });
 
 module.exports = {
-    entry: './src/App',
+    entry: [
+        'whatwg-fetch',
+        './src/App'
+    ],
     output: {
         filename: 'bundle.js',
     },

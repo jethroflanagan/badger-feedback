@@ -3,29 +3,32 @@
         'Form--show': isVisible,
     }"
 >
-    <form @submit.prevent="send">
-        <text-input
-            v-model="comment"
-            label="Comment"
-            placeholder="What you think?"
-        />
-        <div class="VoteButton-container">
+    <form @submit.prevent>
+        <div class="Form-comment">
+            <text-input
+                v-model="comment"
+                label="Feedback"
+                placeholder="What you think?"
+            />
+        </div>
+        <div class="Form-votes">
             <vote-button
                 type="dislike"
                 label="Dislike"
                 :is-active="isLiked === false"
-                :vote.prevent="vote(false)"
+                :on-click="vote(false)"
             />
             <vote-button
                 type="like"
                 label="Like"
                 :is-active="isLiked === true"
-                :vote="vote(true)"
+                :on-click="vote(true)"
             />
+            <div class="Form-feedback"
+                v-if="isOverVote"
+            >
+                Send feedback
+            </div>
         </div>
-        <submit-button
-            label="Send feedback"
-        />
     </form>
-
 </div>

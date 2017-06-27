@@ -1,0 +1,37 @@
+@import "../../styles/global";
+
+.Form {
+    $transition: .2s ease-out;
+    position: absolute;
+    top: 0;
+    left: $button-size;
+    display: inline-block;
+    background: $color-form-background;
+    box-shadow: 0 0 130px 20px rgba(0, 0, 0, 0.08);
+    padding: 15px;
+    border-radius: $form-border-radius;
+    transform-origin: top left;
+    transform: translate(-$button-size, 0) scale(.8);
+    opacity: 0;
+
+    transition:
+        opacity $transition,
+        transform $transition;
+
+    &--show {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    &-comment {
+        padding-bottom: 10px;
+    }
+
+    &-votes {
+        text-align: right;
+    }
+
+    &-feedback {
+
+    }
+}

@@ -16,6 +16,9 @@ const Badge = Vue.extend({
             type: Function,
             required: true,
         },
+        isOpen: {
+            type: Boolean,
+        }
     },
 
     // data () {

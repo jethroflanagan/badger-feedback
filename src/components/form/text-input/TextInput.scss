@@ -1,0 +1,25 @@
+@import "../../../styles/global";
+
+.TextInput {
+    &-label {
+        padding-bottom: 10px;
+        display: block;
+    }
+    &-field {
+        display: block;
+        font-size: $font-size;
+        border: none;
+        border-radius: $form-border-radius;
+        background-color: #efefef;
+        color: #000;
+        padding: 10px;
+        outline: none;
+        border: 1px solid transparent;
+        max-width: 80vw;
+        max-height: 80vh;
+
+        &:focus {
+            border-color: #ccc;
+        }
+    }
+}

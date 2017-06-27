@@ -1,8 +1,12 @@
 <div>
     <div class="Badge"
+        :class="{
+            'Badge--close': isOpen,
+        }"
         v-on:click.prevent="onClick()"
         role="button"
+        aria-label="Feedback"
+        title="Feedback"
     >
-        Badge
     </div>
 </div>

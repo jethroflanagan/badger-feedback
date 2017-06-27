@@ -4,24 +4,25 @@
     $transition: .1s ease-out;
 
     display: inline-block;
-    width: 40px;
-    height: 40px;
-    border-radius: 20px;
+    min-width: $button-size;
+    height: $button-size;
+    border-radius: $button-border-radius;
 
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 50%;
+    background-size: 70%;
     background-color: $color-button-background;
     border: 2px solid transparent;
     outline: none;
     cursor: pointer;
+    font-size: $font-size;
 
     transition:
         background-color $transition,
         background-size $transition;
 
     &:hover {
-        background-size: 60%;
+        background-size: 80%;
     }
 
     &--like {
@@ -57,4 +58,9 @@
         &--dislike.VoteButton--active {
             background-color: $color-button-background-dislike;
         }
+
+    &--with-label {
+        background-position: 95% 50%;
+        margin-left: 130px;
+    }
 }
