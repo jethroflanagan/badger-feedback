@@ -1,14 +1,19 @@
 <div class="Form"
     :class="{
         'Form--show': isVisible,
+        'Form--direction-up-left': direction === 'up-left',
+        'Form--direction-up-right': direction === 'up-right',
+        'Form--direction-down-left': direction === 'down-left',
+        'Form--direction-down-right': direction === 'down-right',
     }"
+    :style="style.form"
 >
     <form @submit.prevent>
         <div class="Form-comment">
             <text-input
                 v-model="comment"
                 label="Feedback"
-                placeholder="What you think?"
+                :placeholder="commentPlaceholder"
                 :is-focused="true"
                 :max-length="256"
             />

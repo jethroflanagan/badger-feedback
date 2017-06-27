@@ -1,7 +1,12 @@
-<div class="App">
+<div class="App"
+    :style="appOptions.style ? appOptions.style : false"
+>
     <badge-icon
         :is-open="isOpen"
         :toggle="toggleForm"
+        :options="badgeOptions"
     />
-    <rating-form v-if="isOpen" />
+    <rating-form v-if="isOpen"
+        :options="formOptions"
+    />
 </div>

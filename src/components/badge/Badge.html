@@ -1,12 +1,13 @@
-<div>
-    <div class="Badge"
-        :class="{
-            'Badge--close': isOpen,
-        }"
-        v-on:click.prevent="onClick()"
-        role="button"
-        aria-label="Feedback"
-        title="Feedback"
-    >
-    </div>
+<div class="Badge"
+    :class="{
+        'Badge--close': isOpen,
+    }"
+    v-on:click.prevent="onClick()"
+    role="button"
+    aria-label="Feedback"
+    title="Feedback"
+    :style="style.color"
+>
+    <span class="Badge-openIcon" :style="style.image"></span>
+    <span class="Badge-closeIcon"></span>
 </div>

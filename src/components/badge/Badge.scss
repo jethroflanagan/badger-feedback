@@ -30,32 +30,30 @@
         width $transition,
         height $transition;
 
-    &:before, &:after {
+    &:hover {
+        background-color: $color-button-focus;
+    }
+
+    &-openIcon, &-closeIcon {
         @extend %icon;
         transition:
             transform $transition;
     }
 
-    &:before {
+    &-openIcon {
         background-image: url('#{$icon-path}communication/message-square.svg');
     }
 
-    &:after {
+    &-closeIcon {
         background-image: url('#{$icon-path}core/x.svg');
         transform: translate(-$size, 0);
     }
 
-    &:hover {
-        background-color: $color-button-focus;
-    }
-
-    &--close {
-        &:before {
+        &--close &-openIcon {
             transform: translate($size, 0);
         }
-        &:after {
-            @extend %icon;
+
+        &--close &-closeIcon {
             transform: translate(0, 0);
         }
-    }
 }

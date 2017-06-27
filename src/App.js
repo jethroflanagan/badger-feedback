@@ -4,7 +4,7 @@ import RatingForm from './components/form/RatingForm';
 import styles from './App.scss';
 import template from './App.html';
 
-export const createFeedbackBadge = (selector) => {
+export const createFeedbackBadge = (selector, options) => {
     new Vue({
         el: selector,
         template,
@@ -14,8 +14,39 @@ export const createFeedbackBadge = (selector) => {
         },
 
         data () {
+            const {
+                style,
+                badgeImage,
+                badgeColor,
+                formTitle,
+                commentPlaceholder,
+                commentLength,
+                voteUpImage,
+                voteDownImage,
+                submitMessage,
+                direction,
+                zIndex,
+            } = options;
+
             return {
                 isOpen: true,
+                appOptions: {
+                    style,
+                    zIndex,
+                },
+                badgeOptions: {
+                    image: badgeImage,
+                    color: badgeColor,
+                },
+                formOptions: {
+                    formTitle,
+                    commentPlaceholder,
+                    commentLength,
+                    voteUpImage,
+                    voteDownImage,
+                    direction,
+                    submitMessage,
+                }
             };
         },
 

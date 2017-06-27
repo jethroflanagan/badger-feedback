@@ -15,11 +15,43 @@ const RatingForm = Vue.extend({
         'vote-button': VoteButton,
     },
 
+    props: {
+        options: {
+            type: Object,
+        }
+    },
+
     data () {
+        const {
+            formTitle,
+            commentPlaceholder = 'What you think?',
+            commentLength,
+            voteUpImage,
+            voteDownImage,
+            direction,
+            submitMessage,
+        } = this.options;
+
+        const style = {};
+        if (voteUpImage) {
+            style.voteUp = {
+                'background-image': `url(${voteUpImage})`,
+            };
+        }
+        if (voteUpImage) {
+            style.voteDown = {
+                'background-image': `url(${voteDownImage})`,
+            };
+        }
+
         return {
             comment: '',
             isVisible: false,
             isLiked: null,
+            formTitle,
+            commentPlaceholder,
+            direction,
+            style,
         };
     },
 

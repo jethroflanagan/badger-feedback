@@ -41,7 +41,7 @@
     <header>
         <h1>
             Feedback badge demo
-            <div class="js-feedback"></div>
+            <div class="badger-feedback"></div>
         </h1>
 
     </header>
@@ -52,18 +52,29 @@
         </code>
         </p>
         <div class="banner">Placeholder for banner
-            <div class="js-feedback"
-                data-position="absolute"
-                data-style="right: 10px; bottom: 10px;"
+            <div class="badger-feedback"
+                data-style="position: absolute; right: 5px; bottom: 5px;"
                 data-comment-placeholder="Tell us!"
+                data-direction="up-left"
+                data-badge-image="assets/icons/core/bell.svg"
+                data-badge-color="#111"
+                data-z-index="9"
             ></div>
         </div>
         <p>Pro ne assum munere sensibus. Enim verear docendi usu ex, no dictas oporteat honestatis has, in deleniti perfecto dissentias ius.</p>
-        <div  class="js-feedback"></div>
+        <div  class="badger-feedback"></div>
     </article>
     <footer class="footer">
         Legal notices and company contact info
     </footer>
     <script src="bundle.js"></script>
+    <script>
+        // demo usage
+        window.badgerFeedback.addAll('.badger-feedback', {
+            commentLength: 500,
+            submitMessage: 'Thanks for letting us know',
+        });
+
+    </script>
 </body>
 </html>

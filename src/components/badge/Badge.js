@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import RatingForm from '../form/RatingForm';
-
 import template from './Badge.html';
 import styles from './Badge.scss';
 
@@ -18,14 +17,29 @@ const Badge = Vue.extend({
         },
         isOpen: {
             type: Boolean,
+        },
+        options: {
+            type: Object,
         }
     },
 
-    // data () {
-    //     return {
-    //         isOpen: false,
-    //     };
-    // },
+    data () {
+        const { image, color } = this.options;
+        const style = {};
+        if (image) {
+            style.image = {
+                'background-image': `url(${image})`,
+            };
+        }
+        if (color) {
+            style.color = {
+                'background-color': `${color}`,
+            };
+        }
+        return {
+            style,
+        };
+    },
 
     methods: {
         onClick: function () {
