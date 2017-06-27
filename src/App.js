@@ -29,7 +29,7 @@ export const createFeedbackBadge = (selector, options) => {
             } = options;
 
             return {
-                isOpen: true,
+                isOpen: false,
                 appOptions: {
                     style,
                     zIndex,

@@ -6,7 +6,7 @@
         :toggle="toggleForm"
         :options="badgeOptions"
     />
-    <rating-form v-if="isOpen"
+    <rating-form :class="{ 'Form--show': isOpen}"
         :options="formOptions"
     />
 </div>

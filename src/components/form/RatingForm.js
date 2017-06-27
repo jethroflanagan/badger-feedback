@@ -23,9 +23,9 @@ const RatingForm = Vue.extend({
 
     data () {
         const {
-            formTitle,
+            formTitle = 'Feedback',
             commentPlaceholder = 'What you think?',
-            commentLength,
+            commentLength = 0,
             voteUpImage,
             voteDownImage,
             direction,
@@ -48,16 +48,12 @@ const RatingForm = Vue.extend({
             comment: '',
             isVisible: false,
             isLiked: null,
-            formTitle,
+            title: formTitle,
             commentPlaceholder,
+            commentLength: parseInt(commentLength),
             direction,
             style,
         };
-    },
-
-    mounted () {
-        // add class after initial render to trigger the transition
-        this.isVisible = true;
     },
 
     methods: {

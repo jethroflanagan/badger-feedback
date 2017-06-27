@@ -36,6 +36,10 @@
         &:hover {
             background-color: $color-button-background-like;
         }
+
+        &.VoteButton--active {
+            background-color: $color-button-background-like;
+        }
     }
 
     &--dislike {
@@ -49,15 +53,11 @@
         &:hover {
             background-color: $color-button-background-dislike;
         }
-    }
 
-        &--like.VoteButton--active {
-            background-color: $color-button-background-like;
-        }
-
-        &--dislike.VoteButton--active {
+        &.VoteButton--active {
             background-color: $color-button-background-dislike;
         }
+    }
 
     &--with-label {
         background-position: 95% 50%;

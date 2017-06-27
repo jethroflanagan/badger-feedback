@@ -1,7 +1,9 @@
 @import "../../styles/global";
 
 .Form {
-    $transition: .2s ease-out;
+    $transition: .15s ease-out;
+    $hidden-scale: .8;
+
     position: absolute;
     top: 0;
     left: $button-size;
@@ -11,7 +13,7 @@
     padding: 15px;
     border-radius: $form-border-radius;
     transform-origin: top left;
-    transform: translate(-$button-size, 0) scale(.8);
+    transform: translate(-$button-size, 0) scale($hidden-scale);
     opacity: 0;
 
     transition:
@@ -22,6 +24,38 @@
         transform: scale(1);
         opacity: 1;
     }
+
+        // done by default
+        &--direction-down-right {
+        }
+
+        &--direction-down-left {
+            transform-origin: top right;
+            transform: translate(calc(-100%), 0) scale($hidden-scale);
+
+            &.Form--show {
+                // multi translate calls to support IE (can't do calc)
+                transform: translate(-100%, 0) translate(-$button-size, 0) scale(1);
+            }
+        }
+
+        &--direction-up-left {
+            transform-origin: bottom right;
+            transform: translate(-100%, -100%) translate(0, $button-size) scale($hidden-scale);
+
+            &.Form--show {
+                transform: translate(-100%, -100%) translate(-$button-size, $button-size) scale(1);
+            }
+        }
+
+        &--direction-up-right {
+            transform-origin: bottom left;
+            transform: translate(-$button-size, -100%) translate(0, $button-size) scale($hidden-scale);
+
+            &.Form--show {
+                transform: translate(0, -100%) translate(0, $button-size) scale(1);
+            }
+        }
 
     &-comment {
         padding-bottom: 10px;

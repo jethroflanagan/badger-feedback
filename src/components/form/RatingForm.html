@@ -1,6 +1,5 @@
 <div class="Form"
     :class="{
-        'Form--show': isVisible,
         'Form--direction-up-left': direction === 'up-left',
         'Form--direction-up-right': direction === 'up-right',
         'Form--direction-down-left': direction === 'down-left',
@@ -12,10 +11,10 @@
         <div class="Form-comment">
             <text-input
                 v-model="comment"
-                label="Feedback"
+                :label="title"
                 :placeholder="commentPlaceholder"
                 :is-focused="true"
-                :max-length="256"
+                :max-length="commentLength"
             />
         </div>
         <div class="Form-votes">
