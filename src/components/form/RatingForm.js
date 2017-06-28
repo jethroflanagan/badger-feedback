@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import * as storage from '../../services/storage';
 import TextInput from './text-input/TextInput';
 import SubmitButton from './submit-button/SubmitButton';
 import VoteButton from './vote-button/VoteButton';
@@ -18,7 +19,14 @@ const RatingForm = Vue.extend({
     props: {
         options: {
             type: Object,
-        }
+        },
+        isVisible: {
+            type: Boolean,
+        },
+        submit: {
+            type: Function,
+            required: true,
+        },
     },
 
     data () {
@@ -45,29 +53,61 @@ const RatingForm = Vue.extend({
         }
 
         return {
+            isSending: false,
             comment: '',
-            isVisible: false,
+            email: '',
             isLiked: null,
             title: formTitle,
             commentPlaceholder,
             commentLength: parseInt(commentLength),
             direction,
+            submitMessage,
             style,
         };
+    },
+
+    mounted () {
+        // TODO handle bounds checking for auto direction
     },
 
     methods: {
         vote (isLiked) {
             return () => {
-                console.log('ok', isLiked);
+                if (this.isSending) {
+                    return;
+                }
                 this.isLiked = isLiked;
+                this.isSending = true;
+                this.submit({
+                    email: this.email,
+                    comment: this.comment,
+                    isLiked,
+                })
+                    // fetch equivalent of `finally` is a `then` after `catch`
+                    .catch()
+                    .then(() => this.reset());
             }
         },
-        send () {
-            console.log('sending to api');
-
+        reset () {
+            this.isSending = false;
+            this.isLiked = null;
+            this.comment = '';
+            // don't remove email otherwise it saves empty to store
+            // this.email = '';
         },
     },
+
+    watch: {
+        email: function (val) {
+            // save email for sharing
+            storage.setItem('email', val);
+        },
+        isVisible: function (val) {
+            if (val) {
+                this.email = storage.getItem('email');
+            }
+        }
+    }
 });
 
 export default RatingForm;

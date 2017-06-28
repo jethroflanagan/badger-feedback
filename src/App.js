@@ -18,6 +18,7 @@ export const createFeedbackBadge = (selector, options) => {
                 style,
                 badgeImage,
                 badgeColor,
+                endpoint,
                 formTitle,
                 commentPlaceholder,
                 commentLength,
@@ -29,8 +30,9 @@ export const createFeedbackBadge = (selector, options) => {
             } = options;
 
             return {
-                isOpen: false,
+                isOpen: true,
                 appOptions: {
+                    endpoint,
                     style,
                     zIndex,
                 },
@@ -54,6 +56,51 @@ export const createFeedbackBadge = (selector, options) => {
             toggleForm () {
                 this.isOpen = !this.isOpen;
             },
+            closeForm () {
+                this.isOpen = false;
+            },
+            send (form) {
+                const MIN_TIME = 1500; // ms to keep form on screen
+                if (!fetch || !this.appOptions.endpoint) {
+                    return Promise().resolve(false);
+                }
+                const startTime = new Date().getTime();
+
+                const headers = new Headers();
+                headers.set('Content-Type', 'application/json');
+
+                return fetch(this.appOptions.endpoint, {
+                    method: 'post',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(form),
+                })
+                    .then((response) => {
+                        console.log(response.status);
+                        if (response.status !== 200) {
+                            // if the request resolves quickly, hold the form
+                            // open for a bit
+                            const diffTime = new Date().getTime() - startTime;
+                            if (diffTime < MIN_TIME) {
+                                // can't just do a simple timeout, needs to be a promise
+                                return new Promise(resolve => {
+                                    setTimeout(
+                                        () => {
+                                            this.closeForm();
+                                            resolve();
+                                        },
+                                        MIN_TIME - diffTime
+                                    );
+                                });
+                            }
+                            else {
+                                this.closeForm();
+                                return Promise.resolve();
+                            }
+                        }
+                    });
+            }
         },
     });
 };

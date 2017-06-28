@@ -5,9 +5,10 @@
     <style>
         /* just for the demo space */
         html, body {
-            background: #fff;
+            background: #eee;
             font-family: sans-serif;
         }
+
         .banner {
             position: relative;
             box-sizing: border-box;
@@ -16,20 +17,12 @@
             padding: 20px;
             background: #aaa;
         }
-        .footer {
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            padding: 20px;
-            background: #ccc;
-        }
-        .code {
+        code {
             background: #555;
             color: #fff;
             display: inline-block;
-            padding: 10px;
-            margin: 0;
+            padding: 4px;
+            margin: 1px;
             border-radius: 3px;
             white-space: pre-line;
             font-family: Monaco, monospace;
@@ -45,13 +38,28 @@
                 data-comment-length="0"
             ></div>
         </h1>
-
     </header>
     <article>
+        <h2>Features</h2>
+        <ul>
+            <li>Custom styling, positioning, images and messages</li>
+            <li>Multiple open directions</li>
+            <li>Handles resizing comment field</li>
+            <li>Character limits on form inputs</li>
+            <li>Endpoint posting via fetch</li>
+            <li>Element attributes to set options or run via JS object</li>
+            <li>Options can be used globally and overriden per element</li>
+            <li>Shares email field between all instances</li>
+            <li>Sets focus on comment field on opening</li>
+            <li>Accessibility highlights on focus (tabindex)</li>
+        </ul>
+        <h2>Usage</h2>
         <p>The badges can be added as elements you need then run the plugin with the class or id.
-        <code class="code">&lt;div class=&quot;my-feedback-badge&quot;&gt;&lt;/div&gt;
+        <code>&lt;div class=&quot;my-feedback-badge&quot;&gt;&lt;/div&gt;
             window.badgerFeedback.addAll('.my-feedback-badge');
         </code>
+
+        You must implement a <code>fetch</code> polyfill to use the <code>endpoint</code> option.
         </p>
         <div class="banner">
             Placeholder for banner with custom feedback bell on the right
@@ -63,22 +71,27 @@
                 data-badge-color="#111"
                 data-z-index="9"
                 data-form-title="Thoughts..."
+                data-submit-message="Cheers"
             ></div>
         </div>
-        <p>Pro ne assum munere sensibus. Enim verear docendi usu ex, no dictas oporteat honestatis has, in deleniti perfecto dissentias ius.</p>
+        <h2>Things to extend upon</h2>
+        <ul>
+            <li>Use CSS-modules to prevent clashing with site styles</li>
+            <li>Production build e.g. ExtractText for CSS</li>
+            <li>Communication between forms to close others when one opens and adjust z-index</li>
+            <li>Theming</li>
+        </ul>
         <div class="badger-feedback"
             data-direction="up-right"
         ></div>
     </article>
-    <footer class="footer">
-        Legal notices and company contact info
-    </footer>
     <script src="bundle.js"></script>
     <script>
         // demo usage
         window.badgerFeedback.addAll('.badger-feedback', {
             commentLength: 250,
             submitMessage: 'Thanks for letting us know',
+            endpoint: 'http://localhost:8080/fake', // this will fail
         });
 
     </script>

@@ -7,7 +7,7 @@ import { isElement, validateOptions, extractOptions } from './contract';
 
 // Vue replaces the nodes entirely with the templates, running this multiple times will
 // replace each element in sequence
-function add (selector = '.js-feedback', options = {}, element = null) {
+function add (selector = '.badger-feedback', options = {}, element = null) {
     if (element) {
         const extracted = extractOptions(element);
 

@@ -6,6 +6,10 @@ const TextInput = Vue.extend({
     template,
 
     props: {
+        isDisabled: {
+            type: Boolean,
+            default: false,
+        },
         label: {
             type: String,
             default: '',
@@ -22,6 +26,15 @@ const TextInput = Vue.extend({
             type: Number,
             default: 0,
         },
+        isMultiline: {
+            type: Boolean,
+            default: false,
+        },
+        // HACK to get 2-way binding on v-model
+        nextValue: {
+            type: String,
+            default: '',
+        }
     },
 
     data () {
@@ -38,11 +51,25 @@ const TextInput = Vue.extend({
     },
 
     watch: {
+        isFocused (val) {
+            if (this.$refs.field && this.isFocused) {
+                this.$refs.field.focus();
+            }
+        },
+
         value (val) {
             if (!this.maxLength) {
                 return;
             }
             this.charactersRemaining = this.maxLength - val.length;
+
+            // v-model binding
+            this.$emit('input', val);
+        },
+
+        // Update value from parent
+        nextValue (val) {
+            this.value = val;
         },
     },
 });

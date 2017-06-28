@@ -2,6 +2,7 @@ const contract = dasherize({
     style: '',
     badgeImage: '',
     badgeColor: '',
+    endpoint: '',
     formTitle: '',
     commentPlaceholder: '',
     commentLength: '',
@@ -44,7 +45,6 @@ export const validateOptions = (options) => {
 export const extractOptions = (el) => {
     const options = {};
     for (let attr in contract) {
-
         if (!Object.hasOwnProperty.call(contract, attr)) continue;
 
         // use dasherized attribute name

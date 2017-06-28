@@ -1,13 +1,22 @@
 <div class="TextInput">
-    <label class="TextInput-label" for="field">{{label}}</label>
-    <textarea class="TextInput-field"
+    <textarea v-if="isMultiline"
+        class="TextInput-field TextInput-field--multiline"
         v-model="value"
         :placeholder="placeholder"
-        id="field"
         ref="field"
+        :disabled="isDisabled"
+        :maxlength="maxLength ? maxLength : false"
+    />
+    <input v-if="!isMultiline"
+        class="TextInput-field"
+        v-model="value"
+        :placeholder="placeholder"
+        ref="field"
+        :disabled="isDisabled"
         :maxlength="maxLength ? maxLength : false"
     />
     <div v-if="maxLength > 0"
+        v-show="charactersRemaining <= 50"
         class="TextInput-remaining"
     >
         {{charactersRemaining}}

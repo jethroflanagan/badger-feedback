@@ -1,5 +1,7 @@
 <div class="Form"
     :class="{
+        'Form--sending': isSending,
+        'Form--show': isVisible,
         'Form--direction-up-left': direction === 'up-left',
         'Form--direction-up-right': direction === 'up-right',
         'Form--direction-down-left': direction === 'down-left',
@@ -9,12 +11,23 @@
 >
     <form @submit.prevent>
         <div class="Form-comment">
+            <header class="Form-title">{{title}}</header>
             <text-input
+                class="Form-commentField"
                 v-model="comment"
-                :label="title"
                 :placeholder="commentPlaceholder"
-                :is-focused="true"
+                :is-focused="isVisible"
                 :max-length="commentLength"
+                :is-disabled="isSending"
+                :is-multiline="true"
+            />
+            <text-input
+                v-model="email"
+                placeholder="Email (not required)"
+                :is-focused="false"
+                :max-length="254"
+                :is-disabled="isSending"
+                :next-value="email"
             />
         </div>
         <div class="Form-votes">
@@ -23,13 +36,21 @@
                 label="Dislike"
                 :is-active="isLiked === false"
                 :on-click="vote(false)"
+                :disabled="isSending"
             />
             <vote-button
                 type="like"
                 label="Like"
                 :is-active="isLiked === true"
                 :on-click="vote(true)"
+                :disabled="isSending"
             />
         </div>
     </form>
+
+    <div class="Form-submitMessage"
+        :class="{ 'Form-submitMessage--show' : isSending }"
+    >
+        {{submitMessage}}
+    </div>
 </div>

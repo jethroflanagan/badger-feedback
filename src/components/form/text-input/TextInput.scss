@@ -3,36 +3,63 @@
 .TextInput {
     position: relative;
 
-    &-label {
-        padding-bottom: 10px;
-        display: block;
-        font-size: 1.5rem;
-        font-weight: 300;
-    }
-
     &-field {
         display: block;
         font-size: $font-size;
         border: none;
         border-radius: $form-border-radius;
-        background-color: #efefef;
-        color: #000;
+        background-color: $color-form-input-background;
+        color: $color-form-input;
         padding: 10px;
         outline: none;
         border: 1px solid transparent;
-        min-width: 200px;
-        min-height: 100px;
+        width: 100%;
 
         &:focus {
             border-color: #ccc;
         }
+
+        &--multiline {
+            min-width: 200px;
+            min-height: 100px;
+            max-width: 400px;
+            max-height: 200px;
+        }
     }
 
     &-remaining {
+        $arrow-size: 5px;
+        $padding: 5px;
         position: absolute;
-        opacity: 0.5;
-        bottom: -1.2rem;
-        left: 0;
-        font-size: .8rem;
+
+        opacity: 0.8;
+        top: calc(-1em - #{$padding * 1.7});
+        right: 5px;
+        font-size: .8 * $font-size;
+        padding: 2px $padding;
+        background: $color-button-background;
+        pointer-events: none;
+        transform-origin: bottom right;
+        transform: scale(0);
+
+        transition: transform .1s ease-out;
+
+        &:after {
+            content: '';
+            display: block;
+            position: absolute;
+            bottom: -$arrow-size;
+            right: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: $arrow-size $arrow-size 0 $arrow-size;
+            border-color: $color-button-background transparent transparent transparent;
+        }
     }
+
+        &-field:focus + &-remaining {
+            transform: scale(1);
+        }
+
 }

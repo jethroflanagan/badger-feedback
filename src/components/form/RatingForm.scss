@@ -1,19 +1,19 @@
 @import "../../styles/global";
 
 .Form {
-    $transition: .15s ease-out;
-    $hidden-scale: .8;
-
+    $transition: .25s ease-out;
+    $hidden-scale: 0;
+    $padding: 15px;
     position: absolute;
     top: 0;
     left: $button-size;
     display: inline-block;
     background: $color-form-background;
     box-shadow: 0 0 130px 20px rgba(0, 0, 0, 0.08);
-    padding: 15px;
     border-radius: $form-border-radius;
     transform-origin: top left;
     transform: translate(-$button-size, 0) scale($hidden-scale);
+    overflow: hidden;
     opacity: 0;
 
     transition:
@@ -21,7 +21,7 @@
         transform $transition;
 
     &--show {
-        transform: scale(1);
+        transform: translate(0, 0) scale(1);
         opacity: 1;
     }
 
@@ -31,7 +31,7 @@
 
         &--direction-down-left {
             transform-origin: top right;
-            transform: translate(calc(-100%), 0) scale($hidden-scale);
+            transform: translate(-100%, 0) scale($hidden-scale);
 
             &.Form--show {
                 // multi translate calls to support IE (can't do calc)
@@ -57,15 +57,38 @@
             }
         }
 
-    &-comment {
-        padding-bottom: 10px;
+    &-commentField {
+        margin-bottom: 2px;
     }
 
     &-votes {
         text-align: right;
+        padding: $padding;
     }
 
-    &-feedback {
+    &-title {
+        display: block;
+        padding: $padding;
+        font-size: $font-size * 1.5;
+        font-weight: 300;
+    }
 
+    &-submitMessage {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 100%;
+        font-size: $font-size * 1.5;
+        font-weight: 300;
+        padding: $padding;
+        background: $color-form-background;
+
+        transition: top .2s ease-in-out;
+
+        &--show {
+            top: 0;
+        }
     }
 }

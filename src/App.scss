@@ -4,6 +4,8 @@
     position: relative;
     display: inline-block;
     font-family: $font-stack;
+    font-weight: normal;
+    color: $color-form-text;
     z-index: 1000;
     * {
         box-sizing: border-box;

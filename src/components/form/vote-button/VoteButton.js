@@ -6,6 +6,10 @@ const VoteButton = Vue.extend({
     template,
 
     props: {
+        disabled: {
+            type: Boolean,
+            default: false,
+        },
         label: {
             type: String,
             default: 'Submit',

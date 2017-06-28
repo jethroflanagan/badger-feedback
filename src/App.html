@@ -6,7 +6,9 @@
         :toggle="toggleForm"
         :options="badgeOptions"
     />
-    <rating-form :class="{ 'Form--show': isOpen}"
+    <rating-form
         :options="formOptions"
+        :is-visible="isOpen"
+        :submit="send"
     />
 </div>
