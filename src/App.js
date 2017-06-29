@@ -19,7 +19,7 @@ export const createFeedbackBadge = (selector, options) => {
                 badgeImage,
                 badgeColor,
                 endpoint,
-                formTitle,
+                title,
                 commentPlaceholder,
                 commentLength,
                 voteUpImage,
@@ -41,13 +41,15 @@ export const createFeedbackBadge = (selector, options) => {
                     color: badgeColor,
                 },
                 formOptions: {
-                    formTitle,
+                    title,
                     commentPlaceholder,
                     commentLength,
                     voteUpImage,
                     voteDownImage,
                     direction,
                     submitMessage,
+                    zIndex, // this is also shared with rating-form
+                            // in case .App is not relatively positioned
                 }
             };
         },
@@ -56,9 +58,7 @@ export const createFeedbackBadge = (selector, options) => {
             toggleForm () {
                 this.isOpen = !this.isOpen;
             },
-            closeForm () {
-                this.isOpen = false;
-            },
+
             send (form) {
                 const MIN_TIME = 1500; // ms to keep form on screen
                 if (!fetch || !this.appOptions.endpoint) {
@@ -87,7 +87,7 @@ export const createFeedbackBadge = (selector, options) => {
                                 return new Promise(resolve => {
                                     setTimeout(
                                         () => {
-                                            this.closeForm();
+                                            this.isOpen = false;
                                             resolve();
                                         },
                                         MIN_TIME - diffTime
@@ -95,7 +95,7 @@ export const createFeedbackBadge = (selector, options) => {
                                 });
                             }
                             else {
-                                this.closeForm();
+                                this.isOpen = false;
                                 return Promise.resolve();
                             }
                         }

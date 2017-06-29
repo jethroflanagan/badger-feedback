@@ -4,8 +4,8 @@
     $transition: .1s ease-out;
 
     display: inline-block;
-    min-width: $button-size;
-    height: $button-size;
+    min-width: $button-size-large;
+    min-height: $button-size-large;
     border-radius: $button-border-radius;
 
     background-position: center;
@@ -20,6 +20,12 @@
     transition:
         background-color $transition,
         background-size $transition;
+
+    @include bp($bp-lg) {
+        min-width: $button-size;
+        min-height: $button-size;
+        height: $button-size;
+    }
 
     &:hover {
         background-size: 80%;

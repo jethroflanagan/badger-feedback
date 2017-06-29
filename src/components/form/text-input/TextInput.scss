@@ -20,10 +20,15 @@
         }
 
         &--multiline {
-            min-width: 200px;
-            min-height: 100px;
-            max-width: 400px;
-            max-height: 200px;
+            resize: none;
+
+            @include bp($bp-lg) {
+                resize: both;
+                min-width: 200px;
+                min-height: 100px;
+                max-width: 400px;
+                max-height: 200px;
+            }
         }
     }
 

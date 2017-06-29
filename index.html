@@ -7,6 +7,7 @@
         html, body {
             background: #eee;
             font-family: sans-serif;
+            padding-bottom: 30px;
         }
 
         .banner {
@@ -15,7 +16,7 @@
             width: 100%;
             height: 200px;
             padding: 20px;
-            background: #aaa;
+            background: #ccc;
         }
         code {
             background: #555;
@@ -45,11 +46,11 @@
             <li>Custom styling, positioning, images and messages</li>
             <li>Multiple open directions</li>
             <li>Handles resizing comment field</li>
-            <li>Character limits on form inputs</li>
+            <li>Character limits on form inputs (indicator only shows on focus)</li>
             <li>Endpoint posting via fetch</li>
             <li>Element attributes to set options or run via JS object</li>
             <li>Options can be used globally and overriden per element</li>
-            <li>Shares email field between all instances</li>
+            <li>Shares email field between all instances (stored per session)</li>
             <li>Sets focus on comment field on opening</li>
             <li>Accessibility highlights on focus (tabindex)</li>
         </ul>
@@ -63,16 +64,16 @@
         </p>
         <div class="banner">
             Placeholder for banner with custom feedback bell on the right
-            <div class="badger-feedback"
+            <!--<div class="badger-feedback"
                 data-style="position: absolute; right: 5px; bottom: 5px;"
-                data-comment-placeholder="Tell us!"
+                data-comment-placeholder="Tell us about the pretty banner!"
                 data-direction="up-left"
                 data-badge-image="assets/icons/core/bell.svg"
                 data-badge-color="#111"
                 data-z-index="9"
                 data-form-title="Thoughts..."
                 data-submit-message="Cheers"
-            ></div>
+            ></div>-->
         </div>
         <h2>Things to extend upon</h2>
         <ul>
@@ -80,10 +81,18 @@
             <li>Production build e.g. ExtractText for CSS</li>
             <li>Communication between forms to close others when one opens and adjust z-index</li>
             <li>Theming</li>
+            <li>Fully implement contract (some options don't work)</li>
+            <li>Allow endpoint to be a function that returns promises so site can handle actual request</li>
+            <li>Test integration e.g. Mocha</li>
+            <li>Flow type checker</li>
+            <li>Hot reloading</li>
+            <li>Allow preventing or editing feedback once sent (use gen'd key per session)</li>
         </ul>
-        <div class="badger-feedback"
+        <!--<div class="badger-feedback"
+            data-title="Global feedback"
             data-direction="up-right"
-        ></div>
+            data-style="position: fixed; bottom: 10px; left: 10px;"
+        ></div>-->
     </article>
     <script src="bundle.js"></script>
     <script>
@@ -93,7 +102,6 @@
             submitMessage: 'Thanks for letting us know',
             endpoint: 'http://localhost:8080/fake', // this will fail
         });
-
     </script>
 </body>
 </html>

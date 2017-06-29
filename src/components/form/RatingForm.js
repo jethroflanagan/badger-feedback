@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import * as storage from '../../services/storage';
 import TextInput from './text-input/TextInput';
-import SubmitButton from './submit-button/SubmitButton';
+import Badge from '../badge/Badge';
 import VoteButton from './vote-button/VoteButton';
 
 import template from './RatingForm.html';
@@ -11,8 +11,8 @@ const RatingForm = Vue.extend({
     template,
 
     components: {
+        'badge-icon': Badge,
         'text-input': TextInput,
-        'submit-button': SubmitButton,
         'vote-button': VoteButton,
     },
 
@@ -27,20 +27,25 @@ const RatingForm = Vue.extend({
             type: Function,
             required: true,
         },
+        closeForm: {
+            type: Function,
+            required: true,
+        },
     },
 
     data () {
         const {
-            formTitle = 'Feedback',
+            title = 'Feedback',
             commentPlaceholder = 'What you think?',
             commentLength = 0,
             voteUpImage,
             voteDownImage,
             direction,
             submitMessage,
+            zIndex,
         } = this.options;
 
-        const style = {};
+        const style = { form: {} };
         if (voteUpImage) {
             style.voteUp = {
                 'background-image': `url(${voteUpImage})`,
@@ -51,13 +56,16 @@ const RatingForm = Vue.extend({
                 'background-image': `url(${voteDownImage})`,
             };
         }
+        if (zIndex) {
+            style.form['z-index'] = zIndex;
+        }
 
         return {
             isSending: false,
             comment: '',
             email: '',
             isLiked: null,
-            title: formTitle,
+            title,
             commentPlaceholder,
             commentLength: parseInt(commentLength),
             direction,
@@ -102,6 +110,7 @@ const RatingForm = Vue.extend({
             // save email for sharing
             storage.setItem('email', val);
         },
+
         isVisible: function (val) {
             if (val) {
                 this.email = storage.getItem('email');

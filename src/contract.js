@@ -3,7 +3,7 @@ const contract = dasherize({
     badgeImage: '',
     badgeColor: '',
     endpoint: '',
-    formTitle: '',
+    title: '',
     commentPlaceholder: '',
     commentLength: '',
     voteUpImage: '',
@@ -37,6 +37,12 @@ export const validateOptions = (options) => {
     if (options.direction && validDirections.indexOf(options.direction) === -1) {
         showWarning(`Valid directions: ${validDirections.join(', ')}.
             You used "${options.direction}"`);
+    }
+    if (options.commentLength) {
+        options.commentLength = parseInt(options.commentLength);
+    }
+    if (options.zIndex) {
+        options.zIndex = parseInt(options.zIndex);
     }
     return options;
 }

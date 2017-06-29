@@ -4,21 +4,35 @@
     $transition: .25s ease-out;
     $hidden-scale: 0;
     $padding: 15px;
+
     position: absolute;
+    left: 0;
+    right: 0;
     top: 0;
-    left: $button-size;
+    bottom: 0;
+    position: fixed;
+    overflow-y: scroll;
     display: inline-block;
     background: $color-form-background;
     box-shadow: 0 0 130px 20px rgba(0, 0, 0, 0.08);
     border-radius: $form-border-radius;
-    transform-origin: top left;
+    transform-origin: top center;
     transform: translate(-$button-size, 0) scale($hidden-scale);
-    overflow: hidden;
     opacity: 0;
+    z-index: $z-index; /* for mobile view when form is z-indexed */
 
     transition:
         opacity $transition,
         transform $transition;
+
+    @include bp($bp-lg) {
+        position: absolute;
+        left: $button-size;
+        overflow: hidden;
+        right: auto;
+        bottom: auto;
+        transform-origin: top left;
+    }
 
     &--show {
         transform: translate(0, 0) scale(1);
@@ -71,10 +85,15 @@
         padding: $padding;
         font-size: $font-size * 1.5;
         font-weight: 300;
+        margin-left: 15px + $button-size;
+        @include bp($bp-lg) {
+            margin-left: auto;
+        }
     }
 
     &-submitMessage {
         position: absolute;
+        opacity: 0;
         top: 100%;
         left: 0;
         right: 0;
@@ -82,13 +101,18 @@
         height: 100%;
         font-size: $font-size * 1.5;
         font-weight: 300;
-        padding: $padding;
+        padding: 0;
         background: $color-form-background;
+        height: 0;
 
-        transition: top .2s ease-in-out;
+        transition: opacity .2s ease-out,
+            top .2s ease-in-out;
 
         &--show {
+            padding: $padding;
             top: 0;
+            opacity: 1;
+            height: auto;
         }
     }
 }
