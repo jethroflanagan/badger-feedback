@@ -1,12 +1,143 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>Ratings demo</title>
-  </head>
-  <body>
-    <div id="app">
-      <app-component></app-component>
-    </div>
+    <style>
+        /* just for the demo space */
+        html, body {
+            background: #eee;
+            font-family: sans-serif;
+            padding-bottom: 30px;
+        }
+
+        .banner {
+            position: relative;
+            box-sizing: border-box;
+            width: 100%;
+            height: 200px;
+            padding: 20px;
+            background: #ccc;
+        }
+        code {
+            display: inline-block;
+            padding: 4px;
+            margin: 1px;
+            border-radius: 3px;
+            white-space: pre-line;
+            font-family: Monaco, monospace;
+            font-size: .8rem;
+        }
+        pre {
+            font-family: Monaco, monospace;
+            font-size: .8rem;
+            padding: 4px;
+            margin: 1px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>
+            Feedback badge demo
+            <div class="badger-feedback"
+                data-comment-length="0"
+            ></div>
+        </h1>
+    </header>
+    <article>
+        <h2>Features</h2>
+        <ul>
+            <li>Custom styling, positioning, images and messages</li>
+            <li>Multiple open directions</li>
+            <li>Handles resizing comment field</li>
+            <li>Character limits on form inputs (indicator only shows on focus)</li>
+            <li>Endpoint posting via fetch</li>
+            <li>Element attributes to set options or run via JS object</li>
+            <li>Options can be used globally and overriden per element</li>
+            <li>Shares email field between all instances (stored per session)</li>
+            <li>Sets focus on comment field on opening</li>
+            <li>Accessibility highlights on focus (tabindex)</li>
+            <li>Basic validation</li>
+        </ul>
+        <h2>Usage</h2>
+        <p>
+            The badges can be added to multiple elements by class or id.<br/>
+            <pre>&lt;div class=&quot;my-feedback-badge&quot;&gt;&lt;/div&gt;
+window.badgerFeedback.addAll('.my-feedback-badge');
+            </pre>
+            <p>or you can pass in options</p>
+
+            <pre>window.badgerFeedback.addAll('.my-feedback-badge', { title: 'Comments' });
+            </pre>
+        </p>
+        <p>
+            Options are applied to all elements, but individual elements can override them as needed.
+        </p>
+        <h3>Options</h3>
+        <p>
+            <pre>
+style:              {String}    Affects to badge and container
+badgeImage:         {String}    URL to image, will be used in css via url(<path>)
+badgeColor          {String}    #fff or red
+endpoint            {String}    Fetch must exist or be polyfilled to run this
+title               {String}    Form title
+commentPlaceholder  {String}    On the form
+commentLength       {Number}    Defaults to infinity, set to zero to override to infinity if global options are set
+voteUpImage         {String}    URL to image, will be used in css via url(<path>)
+voteDownImage       {String}    URL to image, will be used in css via url(<path>)
+submitMessage       {String}    Message that shows after voting
+direction           {String}    Direction the form shows in 'up-left', 'up-right', 'down-left', 'down-right'
+zIndex              {Number}    Force the form above stuff if your site uses more than 1000 for z-index
+            </pre>
+        </p>
+        <p>
+            To override the options on an element, set the data attribute with a dasherized version of the property name e.g.
+            <pre>
+&lt;div data-comment-placeholder="Blah" /&gt;
+            </pre>
+        </p>
+        <div class="banner">
+            Placeholder for banner with custom feedback bell on the right
+            <div class="badger-feedback"
+                data-style="position: absolute; right: 5px; bottom: 5px;"
+                data-comment-placeholder="Tell us about the pretty banner!"
+                data-direction="up-left"
+                data-badge-image="assets/icons/core/bell.svg"
+                data-badge-color="#111"
+                data-z-index="9"
+                data-form-title="Thoughts..."
+                data-submit-message="Cheers"
+            ></div>
+        </div>
+        <h2>Things to extend upon</h2>
+        <ul>
+            <li>Use CSS-modules to prevent clashing with site styles</li>
+            <li>Production build e.g. ExtractText for CSS</li>
+            <li>Communication between forms to close others when one opens and adjust z-index</li>
+            <li>Theming</li>
+            <li>Fully implement contract (some options don't work)</li>
+            <li>Allow endpoint to be a function that returns promises so site can handle actual request</li>
+            <li>Test integration e.g. Mocha</li>
+            <li>Flow type checker</li>
+            <li>Hot reloading</li>
+            <li>Allow preventing or editing feedback once sent (use gen'd key per session)</li>
+            <li>Better form validation</li>
+            <li>Auto mode layout based on getBoundingClientRect and window</li>
+        </ul>
+        <div class="badger-feedback"
+            data-title="Global feedback"
+            data-direction="up-right"
+            data-style="position: fixed; bottom: 10px; left: 10px;"
+        ></div>
+    </article>
     <script src="bundle.js"></script>
-  </body>
+    <script>
+        // demo usage
+        window.badgerFeedback.addAll('.badger-feedback', {
+            commentLength: 250,
+            submitMessage: 'Thanks for letting us know',
+            endpoint: 'http://localhost:8080/fake', // this will fail
+        });
+    </script>
+</body>
 </html>
