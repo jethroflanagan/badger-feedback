@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import * as storage from '../../services/storage';
 import TextInput from './text-input/TextInput';
-import Badge from '../badge/Badge';
 import VoteButton from './vote-button/VoteButton';
 
 import template from './RatingForm.html';
@@ -11,7 +10,6 @@ const RatingForm = Vue.extend({
     template,
 
     components: {
-        'badge-icon': Badge,
         'text-input': TextInput,
         'vote-button': VoteButton,
     },
@@ -64,7 +62,10 @@ const RatingForm = Vue.extend({
             isSending: false,
             comment: '',
             email: '',
+            emailError: false,
             isLiked: null,
+
+            // options
             title,
             commentPlaceholder,
             commentLength: parseInt(commentLength),
@@ -84,6 +85,10 @@ const RatingForm = Vue.extend({
                 if (this.isSending) {
                     return;
                 }
+                if (!this.validateEmail(this.email)) {
+                    this.emailError = 'Invalid email';
+                    return;
+                }
                 this.isLiked = isLiked;
                 this.isSending = true;
                 this.submit({
@@ -96,6 +101,7 @@ const RatingForm = Vue.extend({
                     .then(() => this.reset());
             }
         },
+
         reset () {
             this.isSending = false;
             this.isLiked = null;
@@ -103,12 +109,28 @@ const RatingForm = Vue.extend({
             // don't remove email otherwise it saves empty to store
             // this.email = '';
         },
+
+        validateEmail (val) {
+            // very simple check on email
+            if (val.indexOf('@') === -1) {
+                return false;
+            }
+            // find problem emails
+            const hasError = [
+                /[@\.]$/, // @ or . at end
+                /^[@\.]/, // @ or . at start
+                /[@\.]{2}/, // double up of @ or .
+            ].find((test) => (val.match(test) != null));
+
+            return hasError == null;
+        },
     },
 
     watch: {
         email: function (val) {
             // save email for sharing
             storage.setItem('email', val);
+            this.emailError = false;
         },
 
         isVisible: function (val) {

@@ -34,6 +34,10 @@ const TextInput = Vue.extend({
         nextValue: {
             type: String,
             default: '',
+        },
+        error: {
+            type: [String, Boolean],
+            default: false,
         }
     },
 

@@ -48,16 +48,7 @@
         transform: translate(-$size, 0);
     }
 
-    &--close {
-        // position: absolute;
-        // left: 15px;
-        // top: 13px;
-        // @include bp($bp-lg) {
-        //     position: relative;
-        //     left: auto;
-        //     top: auto;
-        // }
-    }
+    &--close {}
 
         &--close &-openIcon {
             transform: translate($size, 0);
@@ -66,4 +57,13 @@
         &--close &-closeIcon {
             transform: translate(0, 0);
         }
+
+    &--close-on-form {
+        position: absolute;
+        top: 13px;
+        left: 15px;
+        @include bp($bp-lg) {
+            display: none;
+        }
+    }
 }

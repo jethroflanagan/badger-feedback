@@ -55,8 +55,30 @@ export const createFeedbackBadge = (selector, options) => {
         },
 
         methods: {
-            toggleForm () {
-                this.isOpen = !this.isOpen;
+            toggleForm (force) {
+                const SCROLL_CLASS = 'page-prevent-scroll';
+                if (force != null) {
+                    this.isOpen = force;
+                }
+                else {
+                    this.isOpen = !this.isOpen;
+                }
+
+                if (this.isOpen) {
+                    // This would be namespaced in prod
+                    // Using the most compatible mechanism to do this
+                    document.body.className += ' ' + SCROLL_CLASS;
+                }
+                else {
+                    // ensure we don't grab partial classes
+                    const matchClass = new RegExp(`\\b${SCROLL_CLASS}\\b`);
+                    document.body.className = document.body.className.replace(matchClass, '');
+                }
+            },
+
+            // for Form header
+            closeForm () {
+                this.toggleForm(false);
             },
 
             send (form) {
@@ -87,7 +109,7 @@ export const createFeedbackBadge = (selector, options) => {
                                 return new Promise(resolve => {
                                     setTimeout(
                                         () => {
-                                            this.isOpen = false;
+                                            this.closeForm();
                                             resolve();
                                         },
                                         MIN_TIME - diffTime
@@ -95,7 +117,7 @@ export const createFeedbackBadge = (selector, options) => {
                                 });
                             }
                             else {
-                                this.isOpen = false;
+                                this.closeForm();
                                 return Promise.resolve();
                             }
                         }

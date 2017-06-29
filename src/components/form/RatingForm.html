@@ -11,7 +11,19 @@
 >
     <form @submit.prevent>
         <div class="Form-comment">
-            <header class="Form-title">{{title}}</header>
+            <header class="Form-title">
+                <div class="Badge Badge--close Badge--close-on-form"
+                    v-on:click.prevent="closeForm()"
+                    role="button"
+                    aria-label="Close"
+                    title="Close"
+                    :style="style.color"
+                >
+                    <span class="Badge-closeIcon"></span>
+                </div>
+
+                {{title}}
+            </header>
             <text-input
                 class="Form-commentField"
                 v-model="comment"
@@ -28,6 +40,7 @@
                 :max-length="254"
                 :is-disabled="isSending"
                 :next-value="email"
+                :error="emailError"
             />
         </div>
         <div class="Form-votes">
@@ -51,6 +64,6 @@
     <div class="Form-submitMessage"
         :class="{ 'Form-submitMessage--show' : isSending }"
     >
-        {{submitMessage}}
+        <span>{{submitMessage}}</span>
     </div>
 </div>

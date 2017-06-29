@@ -32,7 +32,7 @@
         }
     }
 
-    &-remaining {
+    &-remaining, &-error {
         $arrow-size: 5px;
         $padding: 5px;
         position: absolute;
@@ -64,6 +64,10 @@
     }
 
         &-field:focus + &-remaining {
+            transform: scale(1);
+        }
+
+        &-error {
             transform: scale(1);
         }
 

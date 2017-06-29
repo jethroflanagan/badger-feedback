@@ -16,9 +16,14 @@
         :maxlength="maxLength ? maxLength : false"
     />
     <div v-if="maxLength > 0"
-        v-show="charactersRemaining <= 50"
+        v-show="charactersRemaining <= 50 && !hasError"
         class="TextInput-remaining"
     >
         {{charactersRemaining}}
+    </div>
+    <div v-show="error"
+        class="TextInput-error"
+    >
+        {{error}}
     </div>
 </div>
