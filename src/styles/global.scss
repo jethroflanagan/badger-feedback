@@ -1,0 +1,29 @@
+$image-path: "/assets/";
+$icon-path: "#{$image-path}icons/"; // using icons from https://feather.netlify.com/
+$font-stack: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+$font-size: 1rem;
+$z-index: 1000; /* Just to deal with sites that use high values */
+
+$color-button-background: #aaa;
+$color-button-focus: #555;
+$color-button-background-like: #00c4ff;
+$color-button-background-dislike: #e64747;
+
+$color-form-background: #fff;
+$color-form-text: #333;
+$color-form-input-background: #efefef;
+$color-form-input: #333;
+// $color-dark-form-background: #342d37;
+
+$button-border-radius: 0;
+$button-size: 32px;
+$button-size-large: 48px;
+
+$form-border-radius: 0;
+
+$bp-sm: 321px;
+$bp-lg: 769px;
+
+@mixin bp ($size) {
+    @media (min-width: $size) { @content ; }
+}

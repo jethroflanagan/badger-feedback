@@ -1,0 +1,15 @@
+<div class="App"
+    :style="appOptions.style ? appOptions.style : false"
+>
+    <badge-icon
+        :is-open="isOpen"
+        :toggle="toggleForm"
+        :options="badgeOptions"
+    />
+    <rating-form
+        :options="formOptions"
+        :is-visible="isOpen"
+        :submit="send"
+        :close-form="closeForm"
+    />
+</div>

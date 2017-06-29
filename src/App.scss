@@ -1,0 +1,25 @@
+@import "styles/global";
+
+.App {
+    position: static;
+
+    display: inline-block;
+    font-family: $font-stack;
+    font-weight: normal;
+    color: $color-form-text;
+    z-index: $z-index;
+    * {
+        box-sizing: border-box;
+    }
+
+    @include bp($bp-lg) {
+        position: relative;
+    }
+}
+
+.page-prevent-scroll {
+    overflow: hidden;
+    @include bp($bp-lg) {
+        overflow: auto;
+    }
+}

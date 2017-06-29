@@ -1,0 +1,13 @@
+<button class="VoteButton"
+    :class="{
+        ['VoteButton--' + type]: type,
+        'VoteButton--active': isActive,
+    }"
+    :aria-label="label"
+    :title="label"
+    type="button"
+    :disabled="disabled"
+    @click.prevent="onClick()"
+>
+    <!--{{label}}-->
+</button>
