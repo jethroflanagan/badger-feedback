@@ -64,8 +64,11 @@
     </form>
 
     <div class="Form-submitMessage"
-        :class="{ 'Form-submitMessage--show' : isSending }"
+        :class="{
+            'Form-submitMessage--show' : isSending,
+            'Form-submitMessage--error' : error
+        }"
     >
-        <span>{{submitMessage}}</span>
+        <span>{{error || submitMessage}}</span>
     </div>
 </div>

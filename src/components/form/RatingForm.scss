@@ -125,5 +125,9 @@
                 top: 0;
             }
         }
+
+        &--error {
+            color: $color-form-error;
+        }
     }
 }

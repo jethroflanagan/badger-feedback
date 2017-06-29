@@ -99,8 +99,7 @@ export const createFeedbackBadge = (selector, options) => {
                     body: JSON.stringify(form),
                 })
                     .then((response) => {
-                        console.log(response.status);
-                        if (response.status !== 200) {
+                        if (response.status === 200) {
                             // if the request resolves quickly, hold the form
                             // open for a bit
                             const diffTime = new Date().getTime() - startTime;
@@ -121,6 +120,7 @@ export const createFeedbackBadge = (selector, options) => {
                                 return Promise.resolve();
                             }
                         }
+                        return Promise.reject('Failed to save feedback');
                     });
             }
         },

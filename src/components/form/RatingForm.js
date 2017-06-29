@@ -63,6 +63,7 @@ const RatingForm = Vue.extend({
             comment: '',
             email: '',
             emailError: false,
+            error: false,
             isLiked: null,
 
             // options
@@ -96,16 +97,23 @@ const RatingForm = Vue.extend({
                     comment: this.comment,
                     isLiked,
                 })
-                    // fetch equivalent of `finally` is a `then` after `catch`
-                    .catch()
-                    .then(() => this.reset());
+                    .catch((err) => {
+                        console.log(err);
+                        setTimeout(() => {
+                            this.isSending = false;
+                        }, 1500);
+                        this.error = err;
+                    });
             }
         },
 
         reset () {
+            console.log('reset');
+
             this.isSending = false;
             this.isLiked = null;
             this.comment = '';
+            this.error = false;
             // don't remove email otherwise it saves empty to store
             // this.email = '';
         },
@@ -134,8 +142,12 @@ const RatingForm = Vue.extend({
         },
 
         isVisible: function (val) {
+            console.log('isVis', val);
             if (val) {
                 this.email = storage.getItem('email');
+            }
+            else {
+                this.reset();
             }
         }
     }
