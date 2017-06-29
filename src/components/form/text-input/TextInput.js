@@ -62,7 +62,7 @@ const TextInput = Vue.extend({
         },
 
         value (val) {
-            if (!this.maxLength) {
+            if (!this.maxLength || typeof(val) !== 'string') {
                 return;
             }
             this.charactersRemaining = this.maxLength - val.length;

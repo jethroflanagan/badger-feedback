@@ -88,6 +88,10 @@ export const createFeedbackBadge = (selector, options) => {
                 }
                 const startTime = new Date().getTime();
 
+                const onFail = () => {
+                    return Promise.reject('Failed to save feedback');
+                }
+
                 const headers = new Headers();
                 headers.set('Content-Type', 'application/json');
 
@@ -98,6 +102,7 @@ export const createFeedbackBadge = (selector, options) => {
                     },
                     body: JSON.stringify(form),
                 })
+                    .catch(onFail)
                     .then((response) => {
                         if (response.status === 200) {
                             // if the request resolves quickly, hold the form
@@ -120,7 +125,7 @@ export const createFeedbackBadge = (selector, options) => {
                                 return Promise.resolve();
                             }
                         }
-                        return Promise.reject('Failed to save feedback');
+                        return onFail();
                     });
             }
         },

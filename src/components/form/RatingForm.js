@@ -98,7 +98,6 @@ const RatingForm = Vue.extend({
                     isLiked,
                 })
                     .catch((err) => {
-                        console.log(err);
                         setTimeout(() => {
                             this.isSending = false;
                         }, 1500);
@@ -108,8 +107,6 @@ const RatingForm = Vue.extend({
         },
 
         reset () {
-            console.log('reset');
-
             this.isSending = false;
             this.isLiked = null;
             this.comment = '';
@@ -119,6 +116,7 @@ const RatingForm = Vue.extend({
         },
 
         validateEmail (val) {
+            if (typeof(val) !== 'string' || val === '') return true;
             // very simple check on email
             if (val.indexOf('@') === -1) {
                 return false;
@@ -142,7 +140,6 @@ const RatingForm = Vue.extend({
         },
 
         isVisible: function (val) {
-            console.log('isVis', val);
             if (val) {
                 this.email = storage.getItem('email');
             }
