@@ -30,7 +30,7 @@ export const createFeedbackBadge = (selector, options) => {
             } = options;
 
             return {
-                isOpen: true,
+                isOpen: false,
                 appOptions: {
                     endpoint,
                     style,

@@ -1,6 +1,8 @@
 @import "styles/global";
 
 .App {
+    position: static;
+
     display: inline-block;
     font-family: $font-stack;
     font-weight: normal;
@@ -17,4 +19,7 @@
 
 .page-prevent-scroll {
     overflow: hidden;
+    @include bp($bp-lg) {
+        overflow: auto;
+    }
 }

@@ -19,8 +19,6 @@
             background: #ccc;
         }
         code {
-            background: #555;
-            color: #fff;
             display: inline-block;
             padding: 4px;
             margin: 1px;
@@ -28,6 +26,12 @@
             white-space: pre-line;
             font-family: Monaco, monospace;
             font-size: .8rem;
+        }
+        pre {
+            font-family: Monaco, monospace;
+            font-size: .8rem;
+            padding: 4px;
+            margin: 1px;
         }
     </style>
 </head>
@@ -56,16 +60,45 @@
             <li>Basic validation</li>
         </ul>
         <h2>Usage</h2>
-        <p>The badges can be added as elements you need then run the plugin with the class or id.
-        <code>&lt;div class=&quot;my-feedback-badge&quot;&gt;&lt;/div&gt;
-            window.badgerFeedback.addAll('.my-feedback-badge');
-        </code>
+        <p>
+            The badges can be added to multiple elements by class or id.<br/>
+            <pre>&lt;div class=&quot;my-feedback-badge&quot;&gt;&lt;/div&gt;
+window.badgerFeedback.addAll('.my-feedback-badge');
+            </pre>
+            <p>or you can pass in options</p>
 
-        You must implement a <code>fetch</code> polyfill to use the <code>endpoint</code> option.
+            <pre>window.badgerFeedback.addAll('.my-feedback-badge', { title: 'Comments' });
+            </pre>
+        </p>
+        <p>
+            Options are applied to all elements, but individual elements can override them as needed.
+        </p>
+        <h3>Options</h3>
+        <p>
+            <pre>
+style:              {String}    Affects to badge and container
+badgeImage:         {String}    URL to image, will be used in css via url(<path>)
+badgeColor          {String}    #fff or red
+endpoint            {String}    Fetch must exist or be polyfilled to run this
+title               {String}    Form title
+commentPlaceholder  {String}    On the form
+commentLength       {Number}    Defaults to infinity, set to zero to override to infinity if global options are set
+voteUpImage         {String}    URL to image, will be used in css via url(<path>)
+voteDownImage       {String}    URL to image, will be used in css via url(<path>)
+submitMessage       {String}    Message that shows after voting
+direction           {String}    Direction the form shows in 'up-left', 'up-right', 'down-left', 'down-right'
+zIndex              {Number}    Force the form above stuff if your site uses more than 1000 for z-index
+            </pre>
+        </p>
+        <p>
+            To override the options on an element, set the data attribute with a dasherized version of the property name e.g.
+            <pre>
+&lt;div data-comment-placeholder="Blah" /&gt;
+            </pre>
         </p>
         <div class="banner">
             Placeholder for banner with custom feedback bell on the right
-            <!--<div class="badger-feedback"
+            <div class="badger-feedback"
                 data-style="position: absolute; right: 5px; bottom: 5px;"
                 data-comment-placeholder="Tell us about the pretty banner!"
                 data-direction="up-left"
@@ -74,7 +107,7 @@
                 data-z-index="9"
                 data-form-title="Thoughts..."
                 data-submit-message="Cheers"
-            ></div>-->
+            ></div>
         </div>
         <h2>Things to extend upon</h2>
         <ul>
@@ -90,11 +123,11 @@
             <li>Allow preventing or editing feedback once sent (use gen'd key per session)</li>
             <li>Better form validation</li>
         </ul>
-        <!--<div class="badger-feedback"
+        <div class="badger-feedback"
             data-title="Global feedback"
             data-direction="up-right"
             data-style="position: fixed; bottom: 10px; left: 10px;"
-        ></div>-->
+        ></div>
     </article>
     <script src="bundle.js"></script>
     <script>

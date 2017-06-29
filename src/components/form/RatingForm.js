@@ -49,7 +49,7 @@ const RatingForm = Vue.extend({
                 'background-image': `url(${voteUpImage})`,
             };
         }
-        if (voteUpImage) {
+        if (voteDownImage) {
             style.voteDown = {
                 'background-image': `url(${voteDownImage})`,
             };

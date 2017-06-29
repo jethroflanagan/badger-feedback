@@ -50,6 +50,7 @@
                 :is-active="isLiked === false"
                 :on-click="vote(false)"
                 :disabled="isSending"
+                :style="style.voteDown"
             />
             <vote-button
                 type="like"
@@ -57,6 +58,7 @@
                 :is-active="isLiked === true"
                 :on-click="vote(true)"
                 :disabled="isSending"
+                :style="style.voteUp"
             />
         </div>
     </form>

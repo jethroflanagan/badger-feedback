@@ -39,6 +39,7 @@
         opacity: 1;
     }
 
+    @include bp($bp-lg) {
         // done by default
         &--direction-down-right {
         }
@@ -70,6 +71,7 @@
                 transform: translate(0, -100%) translate(0, $button-size) scale(1);
             }
         }
+    }
 
     &-commentField {
         margin-bottom: 2px;
